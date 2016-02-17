@@ -30,7 +30,7 @@ public class Indexer
 		if (allWords.containsKey(currentWord))
 		{
 			allWords.get(currentWord).incrementFrequency();
-			// Add and remove the Word from topTenWords to rebalance the
+			// Remove and add the Word from topTenWords to rebalance the
 			// PriorityQueue if topTenWords already contains the Word
 			if (topTenWords.contains(allWords.get(currentWord)))
 			{

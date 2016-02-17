@@ -67,6 +67,8 @@ public class Parser
 			parse.consume(text);
 		}
 
+		System.out.println("Top Ten Words (in ascending order):");
+
 		// Print out the top ten list in ascending order
 		Object[] topTen = index.getTopTen().toArray();
 		Arrays.sort(topTen);
@@ -124,5 +126,14 @@ public class Parser
 			index.addWord(word);
 		}
 		return;
+	}
+
+	/**
+	 * 
+	 * @return Returns pointer (used only for tests)
+	 */
+	public int getPointer()
+	{
+		return pointer;
 	}
 }
