@@ -18,6 +18,15 @@ public class Parser
 	}
 
 	// Methods
+
+	/**
+	 * Parses through the files which are passed in as a parameter. Outputs
+	 * a list of the top ten words found in all the files in ascending
+	 * order (by frequency).
+	 * 
+	 * @param args
+	 *            An array of filenames to be read
+	 */
 	public static void main(String[] args)
 	{
 		if (args.length == 0)
@@ -30,6 +39,8 @@ public class Parser
 		StringBuilder tempText = new StringBuilder();
 		Parser parse = new Parser();
 
+		// Copy all the text from the input files into the StringBuilder
+		// tempText
 		for (int i = 0; i < args.length; i++)
 		{
 			String inputFilename = args[i];
@@ -55,6 +66,8 @@ public class Parser
 		{
 			parse.consume(text);
 		}
+
+		// Print out the top ten list in ascending order
 		Object[] topTen = index.getTopTen().toArray();
 		Arrays.sort(topTen);
 		for (Object word : topTen)
@@ -65,6 +78,14 @@ public class Parser
 		return;
 	}
 
+	/**
+	 * Finds and adds the next word in text to the index. After finding a
+	 * word, it consumes all non-alphanumeric characters, moving the
+	 * pointer to the next alphanumeric character.
+	 * 
+	 * @param text
+	 *            A string containing the text from all the files
+	 */
 	public void consume(String text)
 	{
 		StringBuilder tempWord = new StringBuilder();
@@ -72,6 +93,8 @@ public class Parser
 		while (pointer < text.length())
 		{
 			char letter = text.charAt(pointer);
+			// Check to see if the character is a number or letter (ASCII
+			// values)
 			if ((letter > 96 && letter < 123)
 					|| (letter > 47 && letter < 58))
 			{
@@ -80,6 +103,7 @@ public class Parser
 			}
 			else
 			{
+				// Consume the non-alphanumeric characters
 				do
 				{
 					pointer++;
